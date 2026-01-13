@@ -2,8 +2,12 @@
   "name": "electricity-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js",
+    "dev": "nodemon --exec tsx src/index.ts",
+    "lint": "eslint 'src/**/*.ts'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -11,8 +15,12 @@
   "license": "ISC",
   "type": "module",
   "devDependencies": {
+    "@types/express": "^5.0.6",
     "@types/node": "^25.0.6",
     "@types/pg": "^8.16.0",
+    "eslint": "^9.39.2",
+    "nodemon": "^3.1.11",
+    "prettier": "^3.7.4",
     "prisma": "^7.2.0",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
@@ -21,6 +29,7 @@
     "@prisma/adapter-pg": "^7.2.0",
     "@prisma/client": "^7.2.0",
     "dotenv": "^17.2.3",
+    "express": "^5.2.1",
     "pg": "^8.16.3"
   }
 }

@@ -16,6 +16,11 @@ npm install
 docker compose up --build --renew-anon-volumes -d
 ```
 
+## Generate Prisma client
+```
+npx prisma generate
+```
+
 ## To test DB connection
 ```
 cd backend
