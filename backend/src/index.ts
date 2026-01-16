@@ -3,10 +3,13 @@ import express from 'express';
 import dailystatisticRoutes from './routes/dailystatisticRoutes';
 import { errorHandler } from './middlewares/errorHandler';
 import config from './config/config';
+import cors from 'cors';
 
 connectDB();
 
 const app = express();
+
+app.use(cors())
 
 app.use(express.json());
 
