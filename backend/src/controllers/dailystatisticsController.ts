@@ -12,9 +12,11 @@ export const getDailystatistics = async (
     const dailyAverages = await prisma.electricitydata.groupBy({
       by: ['date'],
       _avg: {
-        productionamount: true,
-        consumptionamount: true,
         hourlyprice: true,
+      },
+      _sum: {
+        consumptionamount: true,
+        productionamount: true,
       },
       orderBy: {
         date: 'asc',
@@ -93,8 +95,8 @@ export const getDailystatistics = async (
     //Response model
     interface DailyStatistics {
       date: string | null;
-      avg_production_amount: Decimal | null;
-      avg_consumption_amount: Decimal | null;
+      total_production_amount: Decimal | null;
+      total_consumption_amount: Decimal | null;
       avg_hourly_price: Decimal | null;
       max_negative_price_streak_hours: number | null;
     }
@@ -111,9 +113,9 @@ export const getDailystatistics = async (
       }
 
       response.push({
-        date: element.date!.toJSON(),
-        avg_production_amount: element._avg.productionamount,
-        avg_consumption_amount: element._avg.consumptionamount,
+        date: element.date ? element.date.toJSON().split('T')[0] : null,
+        total_production_amount: element._sum.productionamount,
+        total_consumption_amount: element._sum.consumptionamount,
         avg_hourly_price: element._avg.hourlyprice,
         max_negative_price_streak_hours: negativePriceStreak,
       });
