@@ -4,7 +4,7 @@ async function main() {
   // Example: Fetch all records from a table
   // Replace 'user' with your actual model name
   const allData = await prisma.electricitydata.findFirst()
-  console.log('All electricity data:', JSON.stringify({...allData, id: allData?.id.toString()}, null, 2)) // convert id from BigInt to string separately
+  console.log('Fetched from electricity DB:', JSON.stringify({...allData, id: allData?.id.toString()}, null, 2)) // convert id from BigInt to string separately
 }
 
 main()
