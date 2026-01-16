@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { prisma } from '../lib/prisma';
+import { prisma } from '../lib/prisma.js';
 import { Decimal } from '@prisma/client/runtime/client';
 
 export const getDailystatistics = async (

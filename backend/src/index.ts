@@ -1,8 +1,8 @@
-import { connectDB, disconnectDB } from './lib/prisma';
+import { connectDB, disconnectDB } from './lib/prisma.js';
 import express from 'express';
-import dailystatisticRoutes from './routes/dailystatisticRoutes';
-import { errorHandler } from './middlewares/errorHandler';
-import config from './config/config';
+import dailystatisticRoutes from './routes/dailystatisticRoutes.js';
+import { errorHandler } from './middlewares/errorHandler.js';
+import config from './config/config.js';
 import cors from 'cors';
 
 connectDB();
