@@ -19,6 +19,7 @@ npx prisma generate
 npm run build
 npm run start
 ```
+In the browser open: http://localhost:3000/api/dailystatistics
 
 ### Installing and running the frontend
 1. Run:
