@@ -18,6 +18,7 @@ docker compose up --build --renew-anon-volumes -d
 
 ## Generate Prisma client
 ```
+cd backend
 npx prisma generate
 ```
 
@@ -27,3 +28,10 @@ cd backend
 npx tsx script.ts
 ```
 If authentication fails, make sure a local installation of PostgreSQL isn't running on the port 5432.
+
+## Installing frontend
+1. Run:
+```
+cd frontend
+npm install
+```
