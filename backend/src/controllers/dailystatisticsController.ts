@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { prisma } from '../lib/prisma.js';
 import { Decimal } from '@prisma/client/runtime/client';
+import _ from 'lodash';
 
 export const getDailystatistics = async (
   req: Request,
@@ -95,9 +96,9 @@ export const getDailystatistics = async (
     //Response model
     interface DailyStatistics {
       date: string | null;
-      total_production_amount: Decimal | null;
-      total_consumption_amount: Decimal | null;
-      avg_hourly_price: Decimal | null;
+      total_production_amount: number | null;
+      total_consumption_amount: number | null;
+      avg_hourly_price: number | null;
       max_negative_price_streak_hours: number | null;
     }
 
@@ -114,14 +115,17 @@ export const getDailystatistics = async (
 
       response.push({
         date: element.date ? element.date.toJSON().split('T')[0] : null,
-        total_production_amount: element._sum.productionamount,
-        total_consumption_amount: element._sum.consumptionamount,
-        avg_hourly_price: element._avg.hourlyprice,
+        total_production_amount: element._sum.productionamount?.toNumber() ? element._sum.productionamount?.toNumber() : null,
+        total_consumption_amount: element._sum.consumptionamount?.toNumber() ? element._sum.consumptionamount?.toNumber() : null,
+        avg_hourly_price: element._avg.hourlyprice?.toNumber() ? element._avg.hourlyprice?.toNumber() : null,
         max_negative_price_streak_hours: negativePriceStreak,
       });
     });
 
-    res.json(response);
+    //Sort response array by query parameters
+    const sortedResponse = _.orderBy(response, [req.query.sort_by], [req.query.order as "asc" | "desc"]) as DailyStatistics[];
+
+    res.json(sortedResponse);
     
   } catch (error) {
     next(error);
