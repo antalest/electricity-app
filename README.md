@@ -1,7 +1,7 @@
 # Electricity app
 
 ## Quick start
-1. Clone this project
+Clone this project and then follow the instructions:
 
 ### Running the database
 1. Install Docker Desktop on your computer (https://docs.docker.com/desktop/)
@@ -19,7 +19,7 @@ npx prisma generate
 npm run build
 npm run start
 ```
-In the browser open: http://localhost:3000/api/dailystatistics
+(Optionally, access the endpoint at: http://localhost:3000/api/dailystatistics)
 
 ### Installing and running the frontend
 1. Run:
@@ -29,6 +29,7 @@ npm install
 npm run build
 npm run preview
 ```
+2. Access the Electricity App at: http://localhost:4173/
 
 ## Misc
 ### To test DB connection
